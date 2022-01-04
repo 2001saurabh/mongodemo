@@ -93,8 +93,11 @@ const getDocument = async () => {
   });
   const result1 = await Playlist.count({ author: "Saurabh" });
   // .limit(1);
+
+  // Aggrigation example
+
   const aggregateResult = await Playlist.aggregate([
-    { $match: {} },
+    { $match: { $in: ["js", "React"] } }, //filtering
     { $group: { _id: "$author", total: { $sum: "$videos" } } },
     { $sort: { total: -1 } },
   ]);
