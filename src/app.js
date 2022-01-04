@@ -47,6 +47,8 @@ const Playlist = new mongoose.model("Playlist", playlistSchema);
 // };
 // createDocument();
 
+// <-----------------------  C R U D   O P E R A T I O N  ------------------------------------->
+
 //insert many
 
 const createDocument = async () => {
@@ -101,4 +103,54 @@ const getDocument = async () => {
   console.log(result);
 };
 
-getDocument();
+// getDocument();
+
+//update
+// const updateDocument = async (_id) => {
+//   try {
+//     const result = await Playlist.updateOne(
+//       { _id },
+//       {
+//         $set: {
+//           name: "JavaScript",
+//         },
+//       }
+//     );
+//     console.log(result);
+//   } catch {
+//     (err) => console.log(err);
+//   }
+// };
+// updateDocument("61d3dd39c552bdd137e01fdc");
+
+const updateDocument = async (_id) => {
+  try {
+    const result = await Playlist.findByIdAndUpdate(
+      { _id },
+      {
+        $set: {
+          name: "JavaScript",
+        },
+      },
+      {
+        new: true,
+      }
+    );
+    console.log(result);
+  } catch {
+    (err) => console.log(err);
+  }
+};
+// updateDocument("61d3dd39c552bdd137e01fdc");
+
+const deleteDocument = async (_id) => {
+  try {
+    const result = await Playlist.findByIdAndDelete({ _id });
+    console.log(result);
+  } catch {
+    (err) => console.log(err);
+  }
+};
+deleteDocument("61d3dcb1116b908469d235ec");
+
+/*<------------------------------------End----------------------------------------> */
